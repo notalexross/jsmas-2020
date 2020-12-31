@@ -1,1 +1,1 @@
-export { default as js } from './js'
+export { default as js } from './js.js'

@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect, createContext, useContext, useRef } from 'react'
 import Prism from 'prismjs'
 import "./styles/prism.css"
 import { Container, Pre, Code, Editor, EditorTabsContainer, EditorPagesContainer, EditorPage, EditorTab, Doc } from './styles'
@@ -8,9 +8,12 @@ const SandboxContext = createContext()
 export default function Sandbox({ children, ...restProps }) {
   const [ pages, setPages ] = useState([])
   const [ activePage, setActivePage ] = useState('')
+  const [ html, setHtml ] = useState('')
+  const [ css, setCss ] = useState('')
+  const [ js, setJs ] = useState('')
 
   return (
-    <SandboxContext.Provider value={{ pages, setPages, activePage, setActivePage }}>
+    <SandboxContext.Provider value={{ pages, setPages, activePage, setActivePage, html, setHtml, css, setCss, js, setJs }}>
       <Container {...restProps}>
         {children}
       </Container>
@@ -31,10 +34,13 @@ Sandbox.Editor.PagesContainer = function SandboxEditorPagesContainer({ children,
 }
 
 Sandbox.Editor.Page = function SandboxEditorPage({ id, language, children, ...restProps }) {
-  const { activePage } = useContext(SandboxContext)
+  const { activePage, setHtml, setCss, setJs } = useContext(SandboxContext)
 
   useEffect(() => {
     Prism.highlightAll()
+    id === 'html' && setHtml(children)
+    id === 'css' && setCss(children)
+    id === 'js' && setJs(children)
   }, [])
 
   return (
@@ -59,8 +65,32 @@ Sandbox.Editor.Tab = function SandboxEditorTab({ id, isDefault = false, children
   return <EditorTab isActive={activePage === id} onClick={() => setActivePage(id)} {...restProps}>{children}</EditorTab>
 }
 
-Sandbox.Document = function SandboxDocument({ children, ...restProps }) {
-  return <Doc {...restProps}>{children}</Doc>
+Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
+  const { html, css, js } = useContext(SandboxContext)
+  const docRef = useRef()
+  const [ isLoading, setIsLoading ] = useState(true)
+
+  useEffect(() => {
+    if (html) {
+      docRef.current.contentWindow.document.body.innerHTML = html
+      if (css) {
+        const style = document.createElement('style')
+        style.textContent = css
+        docRef.current.contentWindow.document.head.appendChild(style)
+      }
+      if (js) {
+        const script = document.createElement('script')
+        script.textContent = js
+        docRef.current.contentWindow.document.head.appendChild(script)
+      }
+    }
+    
+    if (html || js || css) {
+      setIsLoading(false)
+    }
+  }, [html, js, css])
+
+  return html ? <Doc ref={docRef} hidden={isLoading} title={title} {...restProps}></Doc> : null
 }
 
 

@@ -51,6 +51,11 @@ export const EditorPage = styled.div`
   background-color: #1e1e1e;
 `
 
-export const Doc = styled.div`
-
+export const Doc = styled.iframe`
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+  box-sizing: border-box;
+  margin-top: 1em;
+  border: solid 1px;
 `

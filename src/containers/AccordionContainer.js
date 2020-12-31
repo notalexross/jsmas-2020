@@ -14,10 +14,10 @@ export default function AccordionContainer() {
               <Accordion.OpenCloseIcon />
             </Accordion.Head>
             <Accordion.Body>
-              <p>Challenge Creator: {challenge.author} (<a href={challenge.authorURL}>{challenge.authorURL}</a>)</p>
-              <p>Scrimba Link: <a href={challenge.scrimURL}>{challenge.scrimURL}</a></p>
+              <p>Challenge Creator: {challenge.author} (<a href={challenge.authorURL} target="_blank" rel="noopener noreferrer">{challenge.authorURL}</a>)</p>
+              <p>Scrimba Link: <a href={challenge.scrimURL} target="_blank" rel="noopener noreferrer">{challenge.scrimURL}</a></p>
               <p>Description: {challenge.description}</p>
-              <SandboxContainer src={`content/solutions/day${idx + 1}`} />
+              <SandboxContainer src={`content/solutions/day${idx + 1}`} title={`Day ${idx + 1} working example`} />
             </Accordion.Body>
           </Accordion.Item>
         )

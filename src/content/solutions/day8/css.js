@@ -1,4 +1,4 @@
-export default
+const css = 
 `body {
   background-color: #AEB8FE;
   display: flex;
@@ -60,5 +60,6 @@ export default
   font-size: 3rem;
   font-weight: 900;
   margin: 3rem;
-}
-`
+}`
+
+export default css
