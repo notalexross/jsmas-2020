@@ -1,4 +1,5 @@
-import { Accordion, Sandbox } from '../components'
+import { Accordion } from '../components'
+import { SandboxContainer } from '.'
 import challenges from '../content/challenges'
 
 export default function AccordionContainer() {
@@ -16,7 +17,7 @@ export default function AccordionContainer() {
               <p>Challenge Creator: {challenge.author} (<a href={challenge.authorURL}>{challenge.authorURL}</a>)</p>
               <p>Scrimba Link: <a href={challenge.scrimURL}>{challenge.scrimURL}</a></p>
               <p>Description: {challenge.description}</p>
-              <Sandbox src={`content/solutions/day${idx + 1}`} />
+              <SandboxContainer src={`content/solutions/day${idx + 1}`} />
             </Accordion.Body>
           </Accordion.Item>
         )
