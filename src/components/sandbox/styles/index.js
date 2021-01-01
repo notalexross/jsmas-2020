@@ -5,9 +5,9 @@ export const Container = styled.div`
 `
 
 export const Pre = styled.pre`
-  margin: 0;
-  padding: 0;
-  white-space: pre-wrap;
+  // margin: 0;
+  // padding: 0;
+  // white-space: pre-wrap;
 `
 
 export const Code = styled.code`
@@ -45,6 +45,7 @@ export const EditorPagesContainer = styled.div`
 export const EditorPage = styled.div`
   // border: solid 1px #e5e5e5;
   // padding: 1em;
+
   overflow: auto;
   box-sizing: border-box;
   height: 400px;

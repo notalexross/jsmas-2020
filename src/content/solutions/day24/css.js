@@ -1,0 +1,30 @@
+const css = 
+`html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.target, .spin {
+  display: flex;
+  justify-content: center
+}
+
+#result {
+  color: blue;
+  text-align: center;
+}
+
+button {
+  height: 32px;
+  border: 1.5px solid aquamarine;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}`
+
+export default css
