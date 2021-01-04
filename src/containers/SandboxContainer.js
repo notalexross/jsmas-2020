@@ -5,21 +5,33 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
   const [ content, setContent ] = useState({})
 
   useEffect(() => {
-    // TODO: Change useEffect callback to async rather than .then callback.
-    import(`../${src}`).then(async data => {
-      if (data.config) {
-        if (data.config.templateHtml) {
-          const { default: htmlTemplate } = await import('../content/solutions/default-template/html.js')
-          data.html = htmlTemplate(data.config)
-        }
-        if (data.config.templateCss) {
-          const { default: cssTemplate } = await import('../content/solutions/default-template/css.js')
-          data.css = cssTemplate(data.config)
-        }
+    async function getHtmlFromTemplate(config) {
+      if (config && config.templateHtml) {
+        const { default: htmlTemplate } = await import('../content/solutions/default-template/html.js')
+        return htmlTemplate(config)
       }
-      const { config, ...content } = data
-      setContent(content)
-    }).catch(err => console.error(err))
+    }
+
+    async function getCssFromTemplate(config) {
+      if (config && config.templateCss) {
+        const { default: cssTemplate } = await import('../content/solutions/default-template/css.js')
+        return cssTemplate(config)
+      }
+    }
+
+    async function importData() {
+      try {
+        const data = await import(`../${src}`)
+        if (!data.html) data.html = await getHtmlFromTemplate(data.config)
+        if (!data.css) data.css = await getCssFromTemplate(data.config)
+        const { config, ...content } = data
+        setContent(content)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    importData()
   }, [])
 
   return (
