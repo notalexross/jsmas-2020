@@ -4,12 +4,11 @@ import challenges from '../content/challenges'
 
 export default function AccordionContainer() {
   // TODO: Move inline syling and regular html tags into Accordion compound component
-  // TODO: Only display Body when sandbox has completely loaded.
   return (
     <Accordion>
       {challenges.map((challenge, idx) => {
         return (
-          <Accordion.Item key={idx}>
+          <Accordion.Item key={idx} respectSetLoaded={true}>
             <Accordion.Head>
               <Accordion.OpenCloseIcon />
               <Accordion.Title>{`Day ${idx + 1}: ${challenge.title}`}</Accordion.Title>
@@ -22,7 +21,7 @@ export default function AccordionContainer() {
               </div>
               <p style={{ marginTop: '2em' }}>Description:</p>
               <p style={{ marginTop: 0 }}>{challenge.description}</p>
-              <SandboxContainer src={`content/solutions/day${idx + 1}`} title={`Day ${idx + 1} working example`} />
+              <SandboxContainer SetLoaded={Accordion.SetLoaded} src={`content/solutions/day${idx + 1}`} title={`Day ${idx + 1} working example`} />
             </Accordion.Body>
           </Accordion.Item>
         )

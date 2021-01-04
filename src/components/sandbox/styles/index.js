@@ -57,10 +57,10 @@ export const EditorPage = styled.div`
 export const Doc = styled.iframe`
   width: 100%;
   height: 410px;
-  background-color: #fff;
+  background-color: #1e1e1e;
   box-sizing: border-box;
   margin-top: 1em;
-  border: solid 1px;
+  border: none;
 
   @media (min-width: 1550px) {
     margin-top: 0;

@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react'
+import { createContext, useState, useContext, useEffect } from 'react'
 import { Container, Item, Head, Icon, Title, Body } from './styles'
 
 const Context = createContext()
@@ -7,11 +7,12 @@ export default function Accordion({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>
 }
 
-Accordion.Item = function AccordionItem({ children, ...restProps}) {
+Accordion.Item = function AccordionItem({ respectSetLoaded = false, children, ...restProps}) {
   const [ isOpen, setIsOpen ] = useState(false)
+  const [ isLoading, setIsLoading ] = useState(respectSetLoaded)
 
   return (
-    <Context.Provider value={{ isOpen, setIsOpen }}>
+    <Context.Provider value={{ isOpen, setIsOpen, isLoading, setIsLoading, respectSetLoaded }}>
       <Item {...restProps}>{children}</Item>
     </Context.Provider>
   )
@@ -38,7 +39,20 @@ Accordion.Head = function AccordionHead({ children, ...restProps}) {
 }
 
 Accordion.Body = function AccordionBody({ children, ...restProps}) {
-  const { isOpen } = useContext(Context)
+  const { isOpen, isLoading } = useContext(Context)
 
-  return isOpen ? <Body {...restProps}>{children}</Body> : null
+  return isOpen ? <Body hidden={isLoading} {...restProps}>{children}</Body> : null
+}
+
+Accordion.SetLoaded = function AccordionSetLoaded() {
+  const { setIsLoading, respectSetLoaded } = useContext(Context)
+
+  useEffect(() => {
+    if (respectSetLoaded) {
+      setIsLoading(false)
+      return () => setIsLoading(true)
+    }
+  }, [])
+
+  return null
 }

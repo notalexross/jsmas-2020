@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react'
 import { Sandbox } from '../components'
 
-export default function SandboxContainer({ src, title }) {
+export default function SandboxContainer({ src, SetLoaded = () => null, title }) {
   const [ content, setContent ] = useState({})
 
   useEffect(() => {
+    // TODO: Change useEffect callback to async rather than .then callback.
     import(`../${src}`).then(async data => {
       if (data.config) {
         if (data.config.templateHtml) {
           const { default: htmlTemplate } = await import('../content/solutions/default-template/html.js')
           data.html = htmlTemplate(data.config)
-          // console.log(data.html)
         }
         if (data.config.templateCss) {
           const { default: cssTemplate } = await import('../content/solutions/default-template/css.js')
           data.css = cssTemplate(data.config)
-          // console.log(data.css)
         }
       }
       const { config, ...content } = data
@@ -42,6 +41,7 @@ export default function SandboxContainer({ src, title }) {
         </Sandbox.Editor.PagesContainer>
       </Sandbox.Editor>
       <Sandbox.Document title={title} />
+      {content.html && <SetLoaded />}
     </Sandbox>
   )
 }

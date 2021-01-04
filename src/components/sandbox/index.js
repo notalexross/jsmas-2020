@@ -68,7 +68,6 @@ Sandbox.Editor.Tab = function SandboxEditorTab({ id, isDefault = false, children
 Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
   const { html, css, js } = useContext(SandboxContext)
   const docRef = useRef()
-  const [ isLoading, setIsLoading ] = useState(true)
 
   useEffect(() => {
     if (html) {
@@ -94,13 +93,9 @@ Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
         docRef.current.contentWindow.document.body.appendChild(script)
       }
     }
-    
-    if (html || js || css) {
-      setIsLoading(false)
-    }
   }, [html, js, css])
 
-  return html ? <Doc ref={docRef} hidden={isLoading} title={title} {...restProps}></Doc> : null
+  return html ? <Doc ref={docRef} title={title} {...restProps}></Doc> : null
 }
 
 
