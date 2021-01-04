@@ -1,7 +1,13 @@
 const css = 
-`body {
+`html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
   background-color: #023F6A;
   font-family: sans-serif;
+  display: grid;
 }
 
 .container {
@@ -12,7 +18,7 @@ const css =
 }
 
 textarea {
-  width:50%;
+  width: 50%;
   height: 30vh;
   background-color: rgb(21, 32, 43);
   color: #fff;

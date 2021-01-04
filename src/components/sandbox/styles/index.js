@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-
+  @media (min-width: 1550px) {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    justify-content: space-between;
+  }
 `
 
 export const Pre = styled.pre`
@@ -32,6 +36,7 @@ export const EditorTab = styled.div`
   white-space: nowrap;
   user-select: none;
   border-left: solid 1px #1e1e1e;
+  line-height: 1.3;
 
   &:first-of-type {
     border-left: none;
@@ -43,20 +48,21 @@ export const EditorPagesContainer = styled.div`
 `
 
 export const EditorPage = styled.div`
-  // border: solid 1px #e5e5e5;
-  // padding: 1em;
-
   overflow: auto;
   box-sizing: border-box;
-  height: 400px;
+  height: calc(410px - 0.6em - 1.2em);
   background-color: #1e1e1e;
 `
 
 export const Doc = styled.iframe`
   width: 100%;
-  height: 400px;
+  height: 410px;
   background-color: #fff;
   box-sizing: border-box;
   margin-top: 1em;
   border: solid 1px;
+
+  @media (min-width: 1550px) {
+    margin-top: 0;
+  }
 `

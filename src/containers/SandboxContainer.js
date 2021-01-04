@@ -5,8 +5,21 @@ export default function SandboxContainer({ src, title }) {
   const [ content, setContent ] = useState({})
 
   useEffect(() => {
-    import(`../${src}`).then(data => {
-      setContent(data)
+    import(`../${src}`).then(async data => {
+      if (data.config) {
+        if (data.config.templateHtml) {
+          const { default: htmlTemplate } = await import('../content/solutions/default-template/html.js')
+          data.html = htmlTemplate(data.config)
+          // console.log(data.html)
+        }
+        if (data.config.templateCss) {
+          const { default: cssTemplate } = await import('../content/solutions/default-template/css.js')
+          data.css = cssTemplate(data.config)
+          // console.log(data.css)
+        }
+      }
+      const { config, ...content } = data
+      setContent(content)
     }).catch(err => console.error(err))
   }, [])
 

@@ -72,16 +72,26 @@ Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
 
   useEffect(() => {
     if (html) {
-      docRef.current.contentWindow.document.body.innerHTML = html
+      // remove any script tags from the html and re add them separately so that they run
+      const htmlOnly = html.replace(/<script>(.*?)<\/script>/gs, '')
+      const inlineScripts = html.match(/(?<=<script>)(.*?)(?=<\/script>)/gs)
+      docRef.current.contentWindow.document.body.innerHTML = htmlOnly
+      inlineScripts && inlineScripts.forEach(js => {
+        const script = document.createElement('script')
+        script.textContent = js
+        docRef.current.contentWindow.document.body.appendChild(script)
+      })
+
       if (css) {
         const style = document.createElement('style')
         style.textContent = css
         docRef.current.contentWindow.document.head.appendChild(style)
       }
+      
       if (js) {
         const script = document.createElement('script')
         script.textContent = js
-        docRef.current.contentWindow.document.head.appendChild(script)
+        docRef.current.contentWindow.document.body.appendChild(script)
       }
     }
     
