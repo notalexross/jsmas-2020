@@ -5,6 +5,8 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
   const [ content, setContent ] = useState({})
 
   useEffect(() => {
+    let isCurrent = true;
+
     async function getHtmlFromTemplate(config) {
       if (config && config.templateHtml) {
         const { default: htmlTemplate } = await import('../content/solutions/default-template/html.js')
@@ -25,13 +27,15 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
         if (!data.html) data.html = await getHtmlFromTemplate(data.config)
         if (!data.css) data.css = await getCssFromTemplate(data.config)
         const { config, ...content } = data
-        setContent(content)
+        isCurrent && setContent(content)
       } catch (err) {
         console.error(err)
       }
     }
 
     importData()
+
+    return () => isCurrent = false
   }, [])
 
   return (
