@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  color: #e5e5e5;
+
   @media (min-width: 1550px) {
     display: grid;
     grid-template-columns: 49% 49%;
@@ -30,6 +32,7 @@ export const EditorTabsContainer = styled.div`
 export const EditorTab = styled.div`
   background-color: ${({ isActive }) => isActive ? '#1e1e1e' : '#2d2d2d'};
   cursor: pointer;
+  font-size: 1rem;
   padding: 0.3em 1em;
   max-width: 20%;
   overflow: hidden;

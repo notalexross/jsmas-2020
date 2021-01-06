@@ -5,22 +5,28 @@ import challenges from '../content/challenges'
 export default function AccordionContainer() {
   // TODO: Move inline syling and regular html tags into Accordion compound component
   return (
-    <Accordion>
+    <Accordion className="accordion">
       {challenges.map((challenge, idx) => {
         return (
           <Accordion.Item key={idx} respectSetLoaded={true}>
-            <Accordion.Head>
+            <Accordion.Head className="accordion-head">
               <Accordion.OpenCloseIcon />
               <Accordion.Title>{`Day ${idx + 1}: ${challenge.title}`}</Accordion.Title>
               <Accordion.OpenCloseIcon />
             </Accordion.Head>
-            <Accordion.Body>
-              <div style={{ display: 'flex', justifyContent: 'space-between'}}>
-                <p style={{ margin: 0 }}>Challenge Creator: <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer">{challenge.author}</a></p>
-                <p style={{ margin: 0 }}><a href={challenge.scrimURL} target="_blank" rel="noopener noreferrer">View solution on Scrimba</a></p>
+            <Accordion.Body className="accordion-body">
+              <div className="challenge-container">
+                <div className="creator-container">
+                  <p>Challenge Creator: <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer">{challenge.author}</a></p>
+                  <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer"><img src={challenge.authorImage}/></a>
+                </div>
+                <div className="description-container">
+                  <h2 className="description-heading">Description</h2>
+                  <p>{challenge.description}</p>
+                  <p><a href={challenge.scrimURL} target="_blank" rel="noopener noreferrer">View editable solution on Scrimba</a></p>
+                </div>
               </div>
-              <p style={{ marginTop: '2em' }}>Description:</p>
-              <p style={{ marginTop: 0 }}>{challenge.description}</p>
+              <h2 className="solution-heading">Solution</h2>
               <SandboxContainer SetLoaded={Accordion.SetLoaded} src={`content/solutions/day${idx + 1}`} title={`Day ${idx + 1} working example`} />
             </Accordion.Body>
           </Accordion.Item>

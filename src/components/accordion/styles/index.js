@@ -40,6 +40,6 @@ export const Icon = styled.span`
 
 export const Body = styled.div`
   background-color: #3c3c3c;
-  padding: 1.5em;
+  padding: 1.5rem;
   border-bottom: solid 1px #444;
 `
