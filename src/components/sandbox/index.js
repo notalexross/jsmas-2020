@@ -41,6 +41,7 @@ Sandbox.Editor.Page = function SandboxEditorPage({ id, language, children, ...re
     id === 'html' && setHtml(children)
     id === 'css' && setCss(children)
     id === 'js' && setJs(children)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -60,6 +61,7 @@ Sandbox.Editor.Tab = function SandboxEditorTab({ id, isDefault = false, children
   useEffect(() => {
     setPages(pages => [ ...pages, id ])
     isDefault && setActivePage(id)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return <EditorTab isActive={activePage === id} onClick={() => setActivePage(id)} {...restProps}>{children}</EditorTab>

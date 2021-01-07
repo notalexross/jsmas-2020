@@ -4,7 +4,6 @@ const challenges = [
     author: `Dylan C. Israel`,
     authorURL: `https://twitter.com/PizzaPokerGuy`,
     authorImage: `https://pbs.twimg.com/profile_images/1198596109029007362/lgmKi7K5_400x400.jpg`,
-    authorImage: `https://pbs.twimg.com/profile_images/1198596109029007362/lgmKi7K5_400x400.jpg`,
     scrimURL: `https://scrimba.com/scrim/co9654a9abdeed829f2fc50ad`,
     description: `n children have got m pieces of candy. They want to eat as much candy as they can, but each child must eat exactly the same amount of candy as any other child. Determine how many pieces of candy will be eaten by all the children together. Individual pieces of candy cannot be split.`
   },
@@ -124,7 +123,6 @@ const challenges = [
     title: `Inset Dashes`,
     author: `Alex Booker`,
     authorURL: `https://twitter.com/bookercodes`,
-    authorImage: `https://pbs.twimg.com/profile_images/1346382298426568704/nOisQYEu_400x400.jpg`,
     authorImage: `https://pbs.twimg.com/profile_images/1346382298426568704/nOisQYEu_400x400.jpg`,
     scrimURL: `https://scrimba.com/scrim/co0574754a0ddfe284bed37e6`,
     description: `Transform a given sentence into a new one with dashes between each two consecutive letters.`
