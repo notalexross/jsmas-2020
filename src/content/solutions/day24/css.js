@@ -8,6 +8,7 @@ const css =
 body {
   display: grid;
   place-content: center;
+  background-color: #fff;
 }
 
 .title {

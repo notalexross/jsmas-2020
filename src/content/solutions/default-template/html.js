@@ -36,61 +36,61 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) =>
             <td>${value}</td>`
           }).join('') +
           `
-            <td>${JSON.stringify(output, null, 1)}</td>
+            <td>${JSON.stringify(output, null, 1).replace(/\n /g,'').replace(/\n/g,'')}</td>
           </tr>`
         )).join('') +
         `
         </tbody>
       </table>
     </div>
-    <p class="output-container">Output: <span id="result">${JSON.stringify(Examples[0].output, null, 1)}</span></p>
+    <p class="output-container">Output: <span id="result">${JSON.stringify(Examples[0].output, null, 1).replace(/\n /g,'').replace(/\n/g,'')}</span></p>
   </div>
 </div>
 <script>
-const form = document.querySelector('form')
-const formInputs = document.querySelectorAll('form > input')
-const submitButton = document.querySelector('button')
-const output = document.querySelector('#result')
-const outputContainer = document.querySelector('.output-container')
-let timeoutId
+  const form = document.querySelector('form')
+  const formInputs = document.querySelectorAll('form > input')
+  const submitButton = document.querySelector('button')
+  const output = document.querySelector('#result')
+  const outputContainer = document.querySelector('.output-container')
+  let timeoutId
 
-form.addEventListener('submit', function() {
-  event.preventDefault()
-  const data = new FormData(this)
-  const values = []
+  form.addEventListener('submit', function() {
+    event.preventDefault()
+    const data = new FormData(this)
+    const values = []
 
-  for (const value of data.values()) {
-    try {
-      values.push(JSON.parse(value))
-    } catch {
-      values.push(value.toString())
+    for (const value of data.values()) {
+      try {
+        values.push(JSON.parse(value))
+      } catch {
+        values.push(value.toString())
+      }
     }
-  }
 
-  const result = ${functionName}(...values)
-  output.textContent = JSON.stringify(result, null, 1)
-  
-  outputContainer.classList.add('highlight')
-  
-  clearTimeout(timeoutId)
-  timeoutId = setTimeout(() => {
-    outputContainer.classList.remove('highlight')
-  }, 800)
-})
-
-formInputs.forEach(input => {
-  input.addEventListener('click', () => {
-    input.value = ''
-    submitButton.disabled = true
+    const result = ${functionName}(...values)
+    output.textContent = JSON.stringify(result, null, 1)
+    
+    outputContainer.classList.add('highlight')
+    
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      outputContainer.classList.remove('highlight')
+    }, 800)
   })
-  input.addEventListener('keyup', () => {
-    if (Array.from(formInputs).some(input => !input.value)) {
+
+  formInputs.forEach(input => {
+    input.addEventListener('click', () => {
+      input.value = ''
       submitButton.disabled = true
-    } else {
-      submitButton.disabled = false
-    }
+    })
+    input.addEventListener('keyup', () => {
+      if (Array.from(formInputs).some(input => !input.value)) {
+        submitButton.disabled = true
+      } else {
+        submitButton.disabled = false
+      }
+    })
   })
-})
 </script>`
 
 export default htmlTemplate

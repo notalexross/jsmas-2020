@@ -1,5 +1,15 @@
 const cssTemplate = config =>
-`html, body {
+`html {
+  font-size: 11px;
+}
+
+@media (min-width: 800px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -21,8 +31,7 @@ p, h1 {
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 0.4em;
+  margin: 0 2rem 0.8rem;
   font-size: 2.5em;
 }
 
@@ -31,12 +40,12 @@ h2 {
 }
 
 .container {
-  margin: auto;
+  margin: auto 1em;
 }
 
 .flex-container {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 18.75rem 1fr;
   grid-template-areas: 
     'form form'
     'outp outp'
@@ -45,7 +54,7 @@ h2 {
 
 .form-container,
 .examples-container {
-  margin: 0.2em 2em;
+  margin: 0.2rem 2rem;
 }
 
 .form-container {
@@ -60,17 +69,22 @@ h2 {
   grid-area: outp;
   font-size: 1.4em;
   margin: 0 2rem 0.4em;
-  max-width: 250px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 600px) {
+  .container {
+    margin: auto;
+  }
+  h1 {
+    text-align: center;
+  }
   .flex-container {
     grid-template-areas: 
       'form exam'
       'outp outp';
   }
   .output-container {
-    max-width: 560px;
+    max-width: 35rem;
   }
 }
 
@@ -82,7 +96,7 @@ h2 {
 /* Form */
 
 form {
-  width: 250px;
+  width: 15.625rem;
 }
 
 input {
@@ -92,6 +106,7 @@ input {
   padding: 0.4em;
   background-color: #e5e5e5;
   border: none;
+  font-size: 1em;
 }
 
 button {
@@ -120,6 +135,7 @@ table, th, td {
 
 table {
   border-collapse: collapse;
+  font-size: 1em;
 }
 
 th, td {

@@ -32,7 +32,7 @@ export const EditorTabsContainer = styled.div`
 export const EditorTab = styled.div`
   background-color: ${({ isActive }) => isActive ? '#1e1e1e' : '#2d2d2d'};
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1em;
   padding: 0.3em 1em;
   max-width: 20%;
   overflow: hidden;
@@ -55,6 +55,7 @@ export const EditorPage = styled.div`
   box-sizing: border-box;
   height: calc(410px - 0.6em - 1.2em);
   background-color: #1e1e1e;
+  font-size: 0.7em;
 `
 
 export const Doc = styled.iframe`
@@ -62,10 +63,12 @@ export const Doc = styled.iframe`
   height: 410px;
   background-color: #1e1e1e;
   box-sizing: border-box;
-  margin-top: 1em;
+  margin-top: 1.5rem;
   border: none;
 
   @media (min-width: 1550px) {
     margin-top: 0;
   }
+
+
 `

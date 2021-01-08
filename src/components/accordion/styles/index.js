@@ -29,7 +29,7 @@ export const Head = styled.section`
 `
 
 export const Title = styled.h1`
-  font-size: inherit;
+  font-size: 1em;
   font-weight: inherit;
   margin: 0 1em;
 `
