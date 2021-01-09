@@ -35,7 +35,7 @@ export const EditorTab = styled.div`
   font-size: 0.85em;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 0.35em 1em;
+  padding: 0.4em 1em;
   max-width: 20%;
   overflow: hidden;
   white-space: nowrap;
@@ -55,7 +55,7 @@ export const EditorPagesContainer = styled.div`
 export const EditorPage = styled.div`
   overflow: auto;
   box-sizing: border-box;
-  height: calc(410px - 0.6em - 1.2em);
+  height: calc(410px - (0.4em * 2) / 0.65 * 0.85 - 0.85em / 0.65 - 0.2em / 0.65);
   background-color: #1e1e1e;
   font-size: 0.65em;
 `
@@ -71,6 +71,4 @@ export const Doc = styled.iframe`
   @media (min-width: 1550px) {
     margin-top: 0;
   }
-
-
 `

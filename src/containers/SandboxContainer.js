@@ -1,3 +1,4 @@
+// TODO: This doesn't work correctly in Firefox.
 import { useState, useEffect } from 'react'
 import { Sandbox } from '../components'
 

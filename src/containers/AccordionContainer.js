@@ -18,7 +18,7 @@ export default function AccordionContainer() {
               <div className="challenge-container">
                 <div className="creator-container">
                   <p>Instructor: <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer">{challenge.author}</a></p>
-                  <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer"><img src={challenge.authorImage} alt={`${challenge.author}'s twitter avatar`}/></a>
+                  <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer"><img src={challenge.authorImage} alt={`avatar`}/></a>
                 </div>
                 <div className="description-container">
                   <h2 className="description-heading">Description</h2>

@@ -5,7 +5,6 @@ const AccordionContext = createContext()
 const ItemContext = createContext()
 
 export default function Accordion({ autoCollapse = false, children, ...restProps }) {
-  // TODO: only a single accordion item should be open at a time
   const [ activeItem, setActiveItem ] = useState()
 
   return (

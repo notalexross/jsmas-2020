@@ -75,6 +75,7 @@ Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
     if (html) {
       // remove any script tags from the html and re add them separately so that they run
       const htmlOnly = html.replace(/<script>(.*?)<\/script>/gs, '')
+      // TODO: URGENT: This line of regex is not supported in Safari.
       const inlineScripts = html.match(/(?<=<script>)(.*?)(?=<\/script>)/gs)
       docRef.current.contentWindow.document.body.innerHTML = htmlOnly
       inlineScripts && inlineScripts.forEach(js => {
