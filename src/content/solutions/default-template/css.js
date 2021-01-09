@@ -1,9 +1,19 @@
 const cssTemplate = config =>
-`html {
+`:root {
+  --accent: #fcfc4a;
+}
+
+html {
   font-size: 11px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 850px) {
   html {
     font-size: 16px;
   }
@@ -90,7 +100,7 @@ h2 {
 
 .highlight {
   font-weight: 700;
-  color: #fcfc4a;  
+  color: var(--accent);  
 }
 
 /* Form */
@@ -117,7 +127,7 @@ button {
   font-size: 1em;
   font-weight: 700;
   width: 100%;
-  background-color: #fcfc4a;
+  background-color: var(--accent);
   color: #1e1e1e;
   border: none;
   cursor: pointer;
@@ -143,7 +153,7 @@ th, td {
 }
 
 th {
-  color: #fcfc4a;
+  color: var(--accent);
 }
 
 td {
@@ -152,7 +162,7 @@ td {
 }
 
 td:last-of-type {
-  color: #fcfc4a;
+  color: var(--accent);
 }`
 
 export default cssTemplate

@@ -45,7 +45,7 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
         <Sandbox.Editor.TabsContainer>
           {Object.keys(content).map(file => 
             <Sandbox.Editor.Tab key={`tab-${file}`} id={file} isDefault={file === 'js'}>
-              {file}
+              {file.toUpperCase()}
             </Sandbox.Editor.Tab>
           )}
         </Sandbox.Editor.TabsContainer>
