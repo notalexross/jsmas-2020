@@ -8,7 +8,7 @@ export default function AccordionContainer() {
     <Accordion autoCollapse className="accordion">
       {challenges.map((challenge, idx) => {
         return (
-          <Accordion.Item key={idx} itemId={idx} respectSetLoaded={true}>
+          <Accordion.Item key={idx} itemId={idx} respectSetLoaded={false}>
             <Accordion.Head className="accordion-head">
               <Accordion.OpenCloseIcon />
               <Accordion.Title>{`Day ${idx + 1}: ${challenge.title}`}</Accordion.Title>

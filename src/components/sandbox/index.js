@@ -74,7 +74,10 @@ Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
   
   const url = getGeneratedPageURL({ html, css, js })
 
-  return html ? <Doc ref={docRef} src={url} title={title} {...restProps}></Doc> : null
+  return (html ?
+    <Doc ref={docRef} src={url} title={title} {...restProps}></Doc> :
+    <Doc ref={docRef} title={title} {...restProps}></Doc>
+  )
 }
 
 

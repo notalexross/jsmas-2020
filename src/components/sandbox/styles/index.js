@@ -21,7 +21,12 @@ export const Code = styled.code`
 `
 
 export const Editor = styled.div`
+  background-color: #1e1e1e;
+  box-sizing: border-box;
+  height: 410px;
 
+  display: flex;
+  flex-direction: column;
 `
 
 export const EditorTabsContainer = styled.div`
@@ -49,14 +54,10 @@ export const EditorTab = styled.div`
 `
 
 export const EditorPagesContainer = styled.div`
-
+  overflow: auto;
 `
 
 export const EditorPage = styled.div`
-  overflow: auto;
-  box-sizing: border-box;
-  height: calc(410px - (0.4em * 2) / 0.65 * 0.85 - 0.85em / 0.65 - 0.2em / 0.65);
-  background-color: #1e1e1e;
   font-size: 0.65em;
 `
 
