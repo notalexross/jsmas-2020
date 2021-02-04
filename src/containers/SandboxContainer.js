@@ -58,7 +58,7 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
           )}
         </Sandbox.Editor.PagesContainer>
       </Sandbox.Editor>
-      <Sandbox.Document title={title} className="sandbox__document"/>
+      <Sandbox.Document title={title} className="sandbox__document" content={content}/>
       {content.html && <SetLoaded />}
     </Sandbox>
   )

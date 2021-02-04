@@ -8,13 +8,10 @@ https://unsplash.com/photos/KBKHXjhVQVM
 https://unsplash.com/photos/PxM8aeJbzvk
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
-
 html, body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  font-family: 'Playfair Display';
   display: grid;
   justify-content: center;
 }

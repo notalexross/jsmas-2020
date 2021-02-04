@@ -4,26 +4,20 @@ import "./styles/prism.css"
 import { getGeneratedPageURL } from '../../utils'
 import { Container, Pre, Code, Editor, EditorTabsContainer, EditorPagesContainer, EditorPage, EditorTab, Doc } from './styles'
 
-const SandboxContext = createContext()
+const EditorContext = createContext()
 
 export default function Sandbox({ children, ...restProps }) {
-  const [ pages, setPages ] = useState([])
-  const [ activePage, setActivePage ] = useState('')
-  const [ html, setHtml ] = useState('')
-  const [ css, setCss ] = useState('')
-  const [ js, setJs ] = useState('')
-
-  return (
-    <SandboxContext.Provider value={{ pages, setPages, activePage, setActivePage, html, setHtml, css, setCss, js, setJs }}>
-      <Container {...restProps}>
-        {children}
-      </Container>
-    </SandboxContext.Provider>
-  )
+  return <Container {...restProps}>{children}</Container>
 }
 
 Sandbox.Editor = function SandboxEditor({ children, ...restProps }) {
-  return <Editor {...restProps}>{children}</Editor>
+  const [ activePage, setActivePage ] = useState('')
+
+  return (
+    <EditorContext.Provider value={{ activePage, setActivePage }}>
+      <Editor {...restProps}>{children}</Editor>
+    </EditorContext.Provider>
+  )
 }
 
 Sandbox.Editor.TabsContainer = function SandboxEditorTabsContainer({ children, ...restProps }) {
@@ -35,15 +29,11 @@ Sandbox.Editor.PagesContainer = function SandboxEditorPagesContainer({ children,
 }
 
 Sandbox.Editor.Page = function SandboxEditorPage({ id, language, children, ...restProps }) {
-  const { activePage, setHtml, setCss, setJs } = useContext(SandboxContext)
+  const { activePage } = useContext(EditorContext)
 
   useEffect(() => {
     Prism.highlightAll()
-    id === 'html' && setHtml(children)
-    id === 'css' && setCss(children)
-    id === 'js' && setJs(children)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [children])
 
   return (
     <EditorPage hidden={activePage !== id} {...restProps}>
@@ -57,24 +47,28 @@ Sandbox.Editor.Page = function SandboxEditorPage({ id, language, children, ...re
 }
 
 Sandbox.Editor.Tab = function SandboxEditorTab({ id, isDefault = false, children, ...restProps }) {
-  const { setPages, activePage, setActivePage } = useContext(SandboxContext)
+  const { activePage, setActivePage } = useContext(EditorContext)
 
   useEffect(() => {
-    setPages(pages => [ ...pages, id ])
     isDefault && setActivePage(id)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [id, isDefault, setActivePage])
 
-  return <EditorTab isActive={activePage === id} onClick={() => setActivePage(id)} {...restProps}>{children}</EditorTab>
+  const handleClick = () => {
+    setActivePage(id)
+  }
+
+  return (
+    <EditorTab isActive={activePage === id} onClick={handleClick} {...restProps}>
+      {children}
+    </EditorTab>
+  )
 }
 
-Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
-  const { html, css, js } = useContext(SandboxContext)
+Sandbox.Document = function SandboxDocument({ title, content, ...restProps }) {
   const docRef = useRef()
-  
-  const url = getGeneratedPageURL({ html, css, js })
+  const url = getGeneratedPageURL(content)
 
-  return (html ?
+  return (content.html ?
     <Doc ref={docRef} src={url} title={title} {...restProps}></Doc> :
     <Doc ref={docRef} title={title} {...restProps}></Doc>
   )
