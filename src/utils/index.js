@@ -11,6 +11,7 @@ export function getGeneratedPageURL({ html, css, js }) {
     <html>
       <head>
         ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
+        <base href="${window.location}">
       </head>
       <body>
         ${html || ''}
