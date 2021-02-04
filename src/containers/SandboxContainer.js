@@ -42,7 +42,7 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
 
   return (
     <Sandbox>
-      <Sandbox.Editor>
+      <Sandbox.Editor className="sandbox__editor">
         <Sandbox.Editor.TabsContainer>
           {Object.keys(content).map(file => 
             <Sandbox.Editor.Tab key={`tab-${file}`} id={file} isDefault={file === 'js'}>
@@ -58,7 +58,7 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
           )}
         </Sandbox.Editor.PagesContainer>
       </Sandbox.Editor>
-      <Sandbox.Document title={title} />
+      <Sandbox.Document title={title} className="sandbox__document"/>
       {content.html && <SetLoaded />}
     </Sandbox>
   )

@@ -27,12 +27,10 @@ html, body {
 
 body {
   display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   background-color: #1e1e1e;
   color: #e5e5e5;
-  padding: 1em 0;
+  padding: 0.5em 0;
   box-sizing: border-box;
 }
 
@@ -50,7 +48,7 @@ h2 {
 }
 
 .container {
-  margin: auto 1em;
+  margin: auto;
 }
 
 .flex-container {

@@ -27,6 +27,9 @@ export const Editor = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  border-radius: 0.2rem;
+  overflow: hidden;
 `
 
 export const EditorTabsContainer = styled.div`
@@ -55,6 +58,8 @@ export const EditorTab = styled.div`
 
 export const EditorPagesContainer = styled.div`
   overflow: auto;
+
+  flex-grow: 1;
 `
 
 export const EditorPage = styled.div`
@@ -72,4 +77,6 @@ export const Doc = styled.iframe`
   @media (min-width: 1550px) {
     margin-top: 0;
   }
+
+  border-radius: 0.2rem;
 `

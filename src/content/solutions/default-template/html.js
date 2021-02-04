@@ -8,8 +8,10 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) =>
         const example = Examples[0].inputs[idx]
         const value = typeof example === 'object' ? JSON.stringify(example) : example
         return `
-        <label for="input">(${String.fromCharCode(idx + 65)}) ${label}</label><br>
-        <input id="input" type="text" name="${String.fromCharCode(idx + 65)}" value='${value}'></input><br>`
+        <label for="input">(${String.fromCharCode(idx + 65)}) ${label}</label>
+        <br>
+        <input id="input" type="text" name="${String.fromCharCode(idx + 65)}" value='${value}'></input>
+        <br>`
       }).join('') +
       `
         <button>Calculate</button>
@@ -43,7 +45,11 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) =>
         </tbody>
       </table>
     </div>
-    <p class="output-container">Output: <span id="result">${JSON.stringify(Examples[0].output, null, 1).replace(/\n /g,'').replace(/\n/g,'')}</span></p>
+    <p class="output-container">
+      Output: <span id="result">
+        ${JSON.stringify(Examples[0].output, null, 1).replace(/\n /g,'').replace(/\n/g,'')}
+      </span>
+    </p>
   </div>
 </div>
 <script>

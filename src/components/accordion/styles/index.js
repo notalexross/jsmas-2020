@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  border: solid 1px #444;
+  // border: solid 1px #444;
   border-bottom: none;
 `
 
@@ -21,7 +21,7 @@ export const Head = styled.section`
   user-select: none;
   background-color: #1e1e1e;
   color: #e5e5e5;
-  border-bottom: solid 1px #444;
+  // border-bottom: solid 1px #444;
 
   &:hover {
     background-color: #333;
