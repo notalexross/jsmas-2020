@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext, useRef } from 'react'
 import Prism from 'prismjs'
 import "./styles/prism.css"
+import { getGeneratedPageURL } from '../../utils'
 import { Container, Pre, Code, Editor, EditorTabsContainer, EditorPagesContainer, EditorPage, EditorTab, Doc } from './styles'
 
 const SandboxContext = createContext()
@@ -70,35 +71,10 @@ Sandbox.Editor.Tab = function SandboxEditorTab({ id, isDefault = false, children
 Sandbox.Document = function SandboxDocument({ title, ...restProps }) {
   const { html, css, js } = useContext(SandboxContext)
   const docRef = useRef()
+  
+  const url = getGeneratedPageURL({ html, css, js })
 
-  useEffect(() => {
-    if (html) {
-      // remove any script tags from the html and re add them separately so that they run
-      const htmlOnly = html.replace(/<script>(.*?)<\/script>/gs, '')
-      // TODO: URGENT: This line of regex is not supported in Safari.
-      const inlineScripts = html.match(/(?<=<script>)(.*?)(?=<\/script>)/gs)
-      docRef.current.contentWindow.document.body.innerHTML = htmlOnly
-      inlineScripts && inlineScripts.forEach(js => {
-        const script = document.createElement('script')
-        script.textContent = js
-        docRef.current.contentWindow.document.body.appendChild(script)
-      })
-
-      if (css) {
-        const style = document.createElement('style')
-        style.textContent = css
-        docRef.current.contentWindow.document.head.appendChild(style)
-      }
-      
-      if (js) {
-        const script = document.createElement('script')
-        script.textContent = js
-        docRef.current.contentWindow.document.body.appendChild(script)
-      }
-    }
-  }, [html, js, css])
-
-  return html ? <Doc ref={docRef} title={title} {...restProps}></Doc> : null
+  return html ? <Doc ref={docRef} src={url} title={title} {...restProps}></Doc> : null
 }
 
 
