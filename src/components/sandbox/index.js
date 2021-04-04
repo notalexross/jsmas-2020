@@ -1,8 +1,18 @@
 import { useState, useEffect, createContext, useContext, useRef } from 'react'
 import Prism from 'prismjs'
-import "./styles/prism.css"
+import './styles/prism.css'
 import { getGeneratedPageURL } from '../../utils'
-import { Container, Pre, Code, Editor, EditorTabsContainer, EditorPagesContainer, EditorPage, EditorTab, Doc } from './styles'
+import {
+  Container,
+  Pre,
+  Code,
+  Editor,
+  EditorTabsContainer,
+  EditorPagesContainer,
+  EditorPage,
+  EditorTab,
+  Doc
+} from './styles'
 
 const EditorContext = createContext()
 
@@ -11,7 +21,7 @@ export default function Sandbox({ children, ...restProps }) {
 }
 
 Sandbox.Editor = function SandboxEditor({ children, ...restProps }) {
-  const [ activePage, setActivePage ] = useState('')
+  const [activePage, setActivePage] = useState('')
 
   return (
     <EditorContext.Provider value={{ activePage, setActivePage }}>
@@ -38,9 +48,7 @@ Sandbox.Editor.Page = function SandboxEditorPage({ id, language, children, ...re
   return (
     <EditorPage hidden={activePage !== id} {...restProps}>
       <Pre>
-        <Code className={language && `language-${language}`}>
-          {children}
-        </Code>
+        <Code className={language && `language-${language}`}>{children}</Code>
       </Pre>
     </EditorPage>
   )
@@ -68,11 +76,9 @@ Sandbox.Document = function SandboxDocument({ title, content, ...restProps }) {
   const docRef = useRef()
   const url = getGeneratedPageURL(content)
 
-  return (content.html ?
-    <Doc ref={docRef} src={url} title={title} {...restProps}></Doc> :
-    <Doc ref={docRef} title={title} {...restProps}></Doc>
+  return content.html ? (
+    <Doc ref={docRef} src={url} title={title} {...restProps} />
+  ) : (
+    <Doc ref={docRef} title={title} {...restProps} />
   )
 }
-
-
-

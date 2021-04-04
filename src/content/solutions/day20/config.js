@@ -7,7 +7,7 @@ const config = {
   Examples: [
     {
       inputs: [['en.wiki.org', 'code.info']],
-      output: ['organization','information']
+      output: ['organization', 'information']
     }
   ]
 }

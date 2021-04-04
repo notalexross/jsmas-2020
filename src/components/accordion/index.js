@@ -5,7 +5,7 @@ const AccordionContext = createContext()
 const ItemContext = createContext()
 
 export default function Accordion({ autoCollapse = false, children, ...restProps }) {
-  const [ activeItem, setActiveItem ] = useState()
+  const [activeItem, setActiveItem] = useState()
 
   return (
     <AccordionContext.Provider value={{ autoCollapse, activeItem, setActiveItem }}>
@@ -14,18 +14,25 @@ export default function Accordion({ autoCollapse = false, children, ...restProps
   )
 }
 
-Accordion.Item = function AccordionItem({ itemId, respectSetLoaded = false, children, ...restProps}) {
-  const [ isOpen, setIsOpen ] = useState(false)
-  const [ isLoading, setIsLoading ] = useState(respectSetLoaded)
+Accordion.Item = function AccordionItem({
+  itemId,
+  respectSetLoaded = false,
+  children,
+  ...restProps
+}) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(respectSetLoaded)
 
   return (
-    <ItemContext.Provider value={{ isOpen, setIsOpen, isLoading, setIsLoading, respectSetLoaded, itemId }}>
+    <ItemContext.Provider
+      value={{ isOpen, setIsOpen, isLoading, setIsLoading, respectSetLoaded, itemId }}
+    >
       <Item {...restProps}>{children}</Item>
     </ItemContext.Provider>
   )
 }
 
-Accordion.OpenCloseIcon = function AccordionOpenCloseIcon({ children, ...restProps }) {
+Accordion.OpenCloseIcon = function AccordionOpenCloseIcon({ ...restProps }) {
   const { isOpen } = useContext(ItemContext)
 
   return isOpen ? <Icon {...restProps}>&minus;</Icon> : <Icon {...restProps}>+</Icon>
@@ -35,7 +42,7 @@ Accordion.Title = function AccordionTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>
 }
 
-Accordion.Head = function AccordionHead({ children, ...restProps}) {
+Accordion.Head = function AccordionHead({ children, ...restProps }) {
   const { isOpen, setIsOpen, itemId } = useContext(ItemContext)
   const { autoCollapse, activeItem, setActiveItem } = useContext(AccordionContext)
 
@@ -44,18 +51,20 @@ Accordion.Head = function AccordionHead({ children, ...restProps}) {
       if (itemId !== undefined) {
         setActiveItem(!isOpen && itemId !== undefined && itemId)
       } else {
-        console.error('Each accordion item requires a (unique) itemId in order to use the autoCollapse attribute')
+        console.error(
+          'Each accordion item requires a (unique) itemId in order to use the autoCollapse attribute'
+        )
       }
     } else {
-      setIsOpen(isOpen => !isOpen)
-    }  
+      setIsOpen(state => !state)
+    }
   }
 
   useEffect(() => {
     if (autoCollapse && itemId !== undefined) {
       setIsOpen(itemId === activeItem)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeItem])
 
   return (
@@ -65,7 +74,7 @@ Accordion.Head = function AccordionHead({ children, ...restProps}) {
   )
 }
 
-Accordion.Body = function AccordionBody({ children, ...restProps}) {
+Accordion.Body = function AccordionBody({ children, ...restProps }) {
   const { isOpen, isLoading, itemId } = useContext(ItemContext)
   const { autoCollapse, activeItem } = useContext(AccordionContext)
   const bodyRef = useRef()
@@ -74,10 +83,14 @@ Accordion.Body = function AccordionBody({ children, ...restProps}) {
     if (autoCollapse && isOpen && activeItem !== undefined && itemId < activeItem) {
       window.scrollBy(0, -bodyRef.current.offsetHeight)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeItem])
 
-  return isOpen ? <Body ref={bodyRef} hidden={isLoading} {...restProps}>{children}</Body> : null
+  return isOpen ? (
+    <Body ref={bodyRef} hidden={isLoading} {...restProps}>
+      {children}
+    </Body>
+  ) : null
 }
 
 Accordion.SetLoaded = function AccordionSetLoaded() {
@@ -88,7 +101,8 @@ Accordion.SetLoaded = function AccordionSetLoaded() {
       setIsLoading(false)
       return () => setIsLoading(true)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    return undefined
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return null

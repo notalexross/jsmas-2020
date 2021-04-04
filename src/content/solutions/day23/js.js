@@ -1,5 +1,4 @@
-const js =
-`const textInput = document.querySelector('#string')
+const js = `const textInput = document.querySelector('#string')
 const tweetBtn = document.querySelector('#btn')
 const counter = document.querySelector('#counterFooter')
 

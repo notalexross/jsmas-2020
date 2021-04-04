@@ -1,5 +1,4 @@
-const css = 
-`html, body {
+const css = `html, body {
   height: 100%;
   margin: 0;
 }

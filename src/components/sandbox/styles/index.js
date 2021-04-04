@@ -16,9 +16,7 @@ export const Pre = styled.pre`
   // white-space: pre-wrap;
 `
 
-export const Code = styled.code`
-
-`
+export const Code = styled.code``
 
 export const Editor = styled.div`
   background-color: #1e1e1e;
@@ -38,7 +36,7 @@ export const EditorTabsContainer = styled.div`
 `
 
 export const EditorTab = styled.div`
-  background-color: ${({ isActive }) => isActive ? '#1e1e1e' : '#2d2d2d'};
+  background-color: ${({ isActive }) => (isActive ? '#1e1e1e' : '#2d2d2d')};
   cursor: pointer;
   font-size: 0.85em;
   font-weight: 700;

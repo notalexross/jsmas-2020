@@ -1,5 +1,4 @@
-const css = 
-`body {
+const css = `body {
   background-color: #AEB8FE;
   display: flex;
   align-items: center;

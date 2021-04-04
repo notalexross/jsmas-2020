@@ -1,5 +1,4 @@
-const html = 
-`<div class="container">
+const html = `<div class="container">
   <img src="images/day15/previous.svg" class="previous disabled" alt="previous image">
   <div class="gallery-wrapper">
     <div class="gallery">

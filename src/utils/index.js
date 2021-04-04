@@ -3,6 +3,7 @@ function getBlobURL(code, type) {
   return URL.createObjectURL(blob)
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export function getGeneratedPageURL({ html, css, js }) {
   const cssURL = getBlobURL(css, 'text/css')
   const jsURL = getBlobURL(js, 'text/javascript')

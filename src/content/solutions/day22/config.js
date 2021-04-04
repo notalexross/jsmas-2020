@@ -6,7 +6,14 @@ const config = {
   paramLabels: ['Matrix', 'Column'],
   Examples: [
     {
-      inputs: [[[1, 1, 1, 2], [0, 5, 0, 4], [2, 1, 3, 6]], 2],
+      inputs: [
+        [
+          [1, 1, 1, 2],
+          [0, 5, 0, 4],
+          [2, 1, 3, 6]
+        ],
+        2
+      ],
       output: [1, 0, 3]
     }
   ]

@@ -5,9 +5,7 @@ export const Container = styled.div`
   border-bottom: none;
 `
 
-export const Item = styled.div`
-
-`
+export const Item = styled.div``
 
 export const Head = styled.section`
   padding: 0.5em 1em;
@@ -34,9 +32,7 @@ export const Title = styled.h1`
   margin: 0 1em;
 `
 
-export const Icon = styled.span`
-  
-`
+export const Icon = styled.span``
 
 export const Body = styled.div`
   background-color: #3c3c3c;

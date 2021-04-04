@@ -1,5 +1,4 @@
-const js =
-`let pushed = false
+const js = `let pushed = false
 let targetInt
 const spinningElem = document.getElementById('spinning')
 const targetElem = document.getElementById('targetNum')

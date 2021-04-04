@@ -1,5 +1,4 @@
-const js =
-`const nSlides = 20
+const js = `const nSlides = 20
 const timeSlide = 2000
 
 const valueContainers = document.querySelectorAll('.dice-value')

@@ -7,11 +7,17 @@ const config = {
   Examples: [
     {
       inputs: [['a', 'b', 'c', 'd'], 2],
-      output: [['a', 'b'], ['c', 'd']]
+      output: [
+        ['a', 'b'],
+        ['c', 'd']
+      ]
     },
     {
       inputs: [[0, 1, 2, 3, 4, 5], 4],
-      output: [[0, 1, 2, 3], [4, 5]]
+      output: [
+        [0, 1, 2, 3],
+        [4, 5]
+      ]
     }
   ]
 }

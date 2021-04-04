@@ -1,5 +1,4 @@
-const css = 
-`/*
+const css = `/*
 Thanks to these fine individuals from Unsplash:
 https://unsplash.com/photos/AmzKuEnr1VY
 https://unsplash.com/photos/eDnJQL21amc

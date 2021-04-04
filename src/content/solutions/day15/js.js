@@ -1,5 +1,4 @@
-const js =
-`const buttons = document.querySelectorAll('.previous, .next')
+const js = `const buttons = document.querySelectorAll('.previous, .next')
 const gallery = document.querySelector('.gallery')
 const numSlides = gallery.children.length
 let currentSlide = 0

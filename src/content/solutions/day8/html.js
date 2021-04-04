@@ -1,5 +1,4 @@
-const html = 
-`<p class="dice-value">6</p>
+const html = `<p class="dice-value">6</p>
 <div id="dice-container">
   <div id="dice-strip">
     <div class="dice one">

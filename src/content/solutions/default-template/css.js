@@ -1,5 +1,5 @@
-const cssTemplate = config =>
-`:root {
+/* eslint-disable import/no-unused-modules */
+const cssTemplate = `:root {
   --accent: #fcfc4a;
 }
 

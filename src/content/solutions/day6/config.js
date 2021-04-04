@@ -6,8 +6,8 @@ const config = {
   paramLabels: ['Strings'],
   Examples: [
     {
-      inputs: [["abc", "", "aaa", "a", "zz"]],
-      output: ["", "a", "zz", "abc", "aaa"]
+      inputs: [['abc', '', 'aaa', 'a', 'zz']],
+      output: ['', 'a', 'zz', 'abc', 'aaa']
     }
   ]
 }

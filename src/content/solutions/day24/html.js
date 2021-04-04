@@ -1,5 +1,4 @@
-const html = 
-`<div class="title">
+const html = `<div class="title">
   <h1>Test your agility!</h1>
   <h3>Push the button at the right time to hit the target number (0-100)</h3>
 </div>
