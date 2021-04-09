@@ -3,7 +3,7 @@ const gallery = document.querySelector('.gallery')
 const numSlides = gallery.children.length
 let currentSlide = 0
 
-const handleCarouselNavigation = function() {    
+const handleCarouselNavigation = () => {
   currentSlide += this.classList.contains('previous') ? -1 : 1
   buttons.forEach(btn => btn.classList.remove('disabled'))
   currentSlide % (numSlides - 1) || this.classList.add('disabled')

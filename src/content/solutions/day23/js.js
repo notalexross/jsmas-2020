@@ -2,7 +2,7 @@ const js = `const textInput = document.querySelector('#string')
 const tweetBtn = document.querySelector('#btn')
 const counter = document.querySelector('#counterFooter')
 
-const handleKeyPress = function() {
+const handleKeyPress = function () {
   const remainingCharacters = 140 - this.value.length
   counter.textContent = \`\${remainingCharacters}/140\`
   if (remainingCharacters >= 0) {

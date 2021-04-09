@@ -7,19 +7,21 @@ https://unsplash.com/photos/KBKHXjhVQVM
 https://unsplash.com/photos/PxM8aeJbzvk
 */
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
+html,
+body {
   display: grid;
   justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 img {
   width: 200px;
 }
 
-.previous, .next {
+.previous,
+.next {
   width: 35px;
 }
 
@@ -34,16 +36,17 @@ img {
   width: 100%;
 }
 
-.previous, .next {
+.previous,
+.next {
   justify-self: center;
   align-self: center;
   cursor: pointer;
 }
 
 .gallery {
-  transform-style: preserve-3d;
   display: grid;
   grid-template-columns: repeat(5, auto);
+  transform-style: preserve-3d;
   transform: translateX(0);
   transition: transform 200ms;
 }
@@ -54,8 +57,8 @@ img {
 }
 
 .disabled {
-  pointer-events: none;
   opacity: 0.3;
+  pointer-events: none;
 }`
 
 export default css

@@ -67,24 +67,23 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) => {
   const outputContainer = document.querySelector('.output-container')
   let timeoutId
 
-  form.addEventListener('submit', function() {
+  form.addEventListener('submit', function (event) {
     event.preventDefault()
     const data = new FormData(this)
-    const values = []
 
-    for (const value of data.values()) {
+    const values = Array.from(data.values()).map(value => {
       try {
-        values.push(JSON.parse(value))
+        return JSON.parse(value)
       } catch {
-        values.push(value.toString())
+        return value.toString()
       }
-    }
+    })
 
     const result = ${functionName}(...values)
     output.textContent = JSON.stringify(result, null, 1)
-    
+
     outputContainer.classList.add('highlight')
-    
+
     clearTimeout(timeoutId)
     timeoutId = setTimeout(() => {
       outputContainer.classList.remove('highlight')
@@ -97,7 +96,7 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) => {
       submitButton.disabled = true
     })
     input.addEventListener('keyup', () => {
-      if (Array.from(formInputs).some(input => !input.value)) {
+      if (Array.from(formInputs).some(formInput => !formInput.value)) {
         submitButton.disabled = true
       } else {
         submitButton.disabled = false

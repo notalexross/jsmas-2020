@@ -1,7 +1,8 @@
-const css = `html, body {
+const css = `html,
+body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 body {
@@ -11,13 +12,14 @@ body {
 }
 
 .title {
-  text-align: center;
   margin-top: 1em;
+  text-align: center;
 }
 
-.target, .spin {
+.target,
+.spin {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 
 #result {
@@ -26,11 +28,11 @@ body {
 }
 
 button {
-  height: 32px;
-  border: 1.5px solid aquamarine;
   display: block;
+  height: 32px;
   margin-left: auto;
   margin-right: auto;
+  border: 1.5px solid aquamarine;
 }`
 
 export default css

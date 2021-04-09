@@ -1,11 +1,9 @@
-const js = `const nSlides = 20
-const timeSlide = 2000
-
-const valueContainers = document.querySelectorAll('.dice-value')
+const js = `const valueContainers = document.querySelectorAll('.dice-value')
 const diceContainer = document.querySelector('#dice-container')
 const diceStrip = document.querySelector('#dice-strip')
 const templates = document.querySelector('#templates').children
-
+const nSlides = 20
+const timeSlide = 2000
 const frameTime = timeSlide / nSlides
 let timeout
 
@@ -15,6 +13,7 @@ const getRandomValues = (nValues = 3) => {
     const randomValue = Math.floor(Math.random() * 6)
     values.push(randomValue)
   }
+
   return values
 }
 
@@ -27,6 +26,7 @@ const populateStrip = (nValues = 3) => {
     const die = templates[value].cloneNode(true)
     diceStrip.appendChild(die)
   })
+
   return values
 }
 
@@ -34,7 +34,7 @@ const animateDice = () => {
   diceStrip.style.transition = 'none'
   diceStrip.style.top = '0'
   setTimeout(() => {
-    diceStrip.style.transition = \`top \${timeSlide}ms cubic-bezier(.27,.01,0,1.13)\`
+    diceStrip.style.transition = \`top \${timeSlide}ms cubic-bezier(.27, .01, 0, 1.13)\`
     diceStrip.style.top = \`\${-100 * (nSlides - 1)}%\`
   }, 10)
 }

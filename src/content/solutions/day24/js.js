@@ -4,19 +4,27 @@ const spinningElem = document.getElementById('spinning')
 const targetElem = document.getElementById('targetNum')
 const result = document.getElementById('result')
 
-document.getElementById("buttonPressed").addEventListener("click", buttonPressed)
-
-function buttonPressed(){
+function buttonPressed() {
   pushed = true
 }
 
-function setTargetInt(){
+function setTargetInt() {
   targetInt = Math.floor(Math.random() * 101)
   targetElem.innerHTML = targetInt
 }
 
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
+const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds))
+
+function stop(i) {
+  const offBy = Math.abs(targetInt - i)
+  let message = ''
+  if (offBy) {
+    message = \`Oh no, you lose! Off by \${offBy}\`
+  } else {
+    message = 'You Win!'
+  }
+
+  result.textContent = message
 }
 
 const spin = async () => {
@@ -26,19 +34,11 @@ const spin = async () => {
     spinningElem.textContent = count
     await sleep(75)
   }
+
   stop(count)
 }
 
-function stop(i){
-  const offBy = Math.abs(targetInt - i)
-  let message = ''
-  if (offBy) {
-    message = \`Oh no, you lose! Off by \${offBy}\`
-  } else {
-    message = 'You Win!'
-  }
-  result.textContent = message
-}
+document.getElementById('buttonPressed').addEventListener('click', buttonPressed)
 
 setTargetInt()
 spin()`
