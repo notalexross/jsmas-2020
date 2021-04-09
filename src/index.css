@@ -113,29 +113,6 @@ a {
 
 /* accordion */
 
-.accordion {
-  /* box-shadow: var(--bs); */
-  overflow: hidden;
-}
-
-body .accordion-head {
-  font-size: 1.55em;
-  padding: 1em;
-}
-
-@media (min-width: 700px) {
-  body .accordion-head {
-    padding: 0.8em;
-  }
-}
-
-body .accordion-body {
-  background-color: #e5e5e5;
-  color: #1e1e1e;
-  font-size: 1.3em;
-  box-shadow: inset var(--bs);
-}
-
 body .creator-container {
   background-color: #252525;
   color: #e5e5e5;
@@ -180,11 +157,4 @@ body .creator-container {
 .description-heading,
 .solution-heading {
   font-size: 1.45em;
-}
-
-/* Sandbox */
-
-.sandbox__editor,
-.sandbox__document {
-  box-shadow: var(--bs);
 }

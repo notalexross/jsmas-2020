@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   // border: solid 1px #444;
   border-bottom: none;
+  overflow: hidden;
 `
 
 export const Item = styled.div``
@@ -13,16 +14,21 @@ export const Head = styled.section`
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.55em;
   font-weight: 700;
   cursor: pointer;
   user-select: none;
   background-color: #1e1e1e;
   color: #e5e5e5;
+  padding: 1em;
   // border-bottom: solid 1px #444;
 
   &:hover {
     background-color: #333;
+  }
+
+  @media (min-width: 700px) {
+    padding: 0.8em;
   }
 `
 
@@ -35,7 +41,10 @@ export const Title = styled.h1`
 export const Icon = styled.span``
 
 export const Body = styled.div`
-  background-color: #3c3c3c;
+  background-color: #e5e5e5;
+  color: #1e1e1e;
+  font-size: 1.3em;
+  box-shadow: inset var(--bs);
   padding: 1.5rem;
   border-bottom: solid 1px #444;
 `

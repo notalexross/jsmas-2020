@@ -5,15 +5,15 @@ import challenges from '../content/challenges'
 export default function AccordionContainer() {
   // TODO: Move inline syling and regular html tags into Accordion compound component
   return (
-    <Accordion autoCollapse className="accordion">
+    <Accordion autoCollapse>
       {challenges.map((challenge, idx) => (
         <Accordion.Item key={challenge.day} itemId={challenge.day} respectSetLoaded={false}>
-          <Accordion.Head className="accordion-head">
+          <Accordion.Head>
             <Accordion.OpenCloseIcon />
             <Accordion.Title>{`Day ${challenge.day}: ${challenge.title}`}</Accordion.Title>
             <Accordion.OpenCloseIcon />
           </Accordion.Head>
-          <Accordion.Body className="accordion-body">
+          <Accordion.Body>
             <div className="challenge-container">
               <div className="creator-container">
                 <p>

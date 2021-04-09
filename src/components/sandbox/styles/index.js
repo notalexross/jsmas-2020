@@ -28,6 +28,7 @@ export const Editor = styled.div`
 
   border-radius: 0.2rem;
   overflow: hidden;
+  box-shadow: var(--bs);
 `
 
 export const EditorTabsContainer = styled.div`
@@ -71,6 +72,7 @@ export const Doc = styled.iframe`
   box-sizing: border-box;
   margin-top: 1.5rem;
   border: none;
+  box-shadow: var(--bs);
 
   @media (min-width: 1550px) {
     margin-top: 0;
