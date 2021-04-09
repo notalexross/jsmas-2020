@@ -1,8 +1,7 @@
-// TODO: This doesn't work correctly in Firefox.
 import { useState, useEffect } from 'react'
 import { Sandbox } from '../components'
 
-export default function SandboxContainer({ src, SetLoaded = () => null, title }) {
+export default function SandboxContainer({ src, title, SetLoadedComponent = () => null }) {
   const [content, setContent] = useState({})
 
   useEffect(() => {
@@ -13,9 +12,11 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
         const { default: htmlTemplate } = await import(
           '../content/solutions/default-template/html.js'
         )
+
         return htmlTemplate(config)
       }
-      return undefined
+
+      return null
     }
 
     async function getCssFromTemplate(config) {
@@ -23,9 +24,11 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
         const { default: cssTemplate } = await import(
           '../content/solutions/default-template/css.js'
         )
+
         return cssTemplate
       }
-      return undefined
+
+      return null
     }
 
     async function importData() {
@@ -52,22 +55,22 @@ export default function SandboxContainer({ src, SetLoaded = () => null, title })
     <Sandbox>
       <Sandbox.Editor>
         <Sandbox.Editor.TabsContainer>
-          {Object.keys(content).map(file => (
-            <Sandbox.Editor.Tab key={`tab-${file}`} id={file} isDefault={file === 'js'}>
-              {file.toUpperCase()}
+          {Object.keys(content).map(codeType => (
+            <Sandbox.Editor.Tab key={`tab-${codeType}`} id={codeType} isDefault={codeType === 'js'}>
+              {codeType.toUpperCase()}
             </Sandbox.Editor.Tab>
           ))}
         </Sandbox.Editor.TabsContainer>
         <Sandbox.Editor.PagesContainer>
-          {Object.entries(content).map(([file, code]) => (
-            <Sandbox.Editor.Page key={`page-${file}`} id={file} language={file}>
-              {file === 'html' ? `<body>\n${code.replace(/^/gm, '  ')}\n</body>` : code}
+          {Object.entries(content).map(([codeType, code]) => (
+            <Sandbox.Editor.Page key={`page-${codeType}`} id={codeType} language={codeType}>
+              {codeType === 'html' ? `<body>\n${code.replace(/^/gm, '  ')}\n</body>` : code}
             </Sandbox.Editor.Page>
           ))}
         </Sandbox.Editor.PagesContainer>
       </Sandbox.Editor>
       <Sandbox.Document title={title} content={content} />
-      {content.html && <SetLoaded />}
+      {content.html && <SetLoadedComponent />}
     </Sandbox>
   )
 }

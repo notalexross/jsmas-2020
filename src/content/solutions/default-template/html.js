@@ -8,6 +8,7 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) => {
         .map((label, idx) => {
           const example = Examples[0].inputs[idx]
           const value = typeof example === 'object' ? JSON.stringify(example) : example
+
           return `
         <label for="input">(${String.fromCharCode(idx + 65)}) ${label}</label>
         <br>
@@ -27,6 +28,7 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) => {
           <tr>${paramLabels
             .map((_, idx) => {
               const value = String.fromCharCode(idx + 65)
+
               return `
             <th>${value}</th>`
             })
@@ -39,6 +41,7 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) => {
           <tr>${inputs
             .map(input => {
               const value = typeof input === 'object' ? JSON.stringify(input) : input
+
               return `
             <td>${value}</td>`
             })
@@ -102,6 +105,7 @@ const htmlTemplate = ({ title, functionName, paramLabels, Examples }) => {
     })
   })
 </script>`
+
   return html
 }
 

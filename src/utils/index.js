@@ -1,25 +1,29 @@
-function getBlobURL(code, type) {
+function getBlobUrl(code, type) {
   const blob = new Blob([code], { type })
-  return URL.createObjectURL(blob)
+  const blobUrl = URL.createObjectURL(blob)
+
+  return blobUrl
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export function getGeneratedPageURL({ html, css, js }) {
-  const cssURL = getBlobURL(css, 'text/css')
-  const jsURL = getBlobURL(js, 'text/javascript')
+export function getGeneratedPageUrl({ html, css, js }) {
+  const cssUrl = getBlobUrl(css, 'text/css')
+  const jsUrl = getBlobUrl(js, 'text/javascript')
 
   const source = `
     <html>
       <head>
-        ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
+        ${css && `<link rel="stylesheet" type="text/css" href="${cssUrl}" />`}
         <base href="${window.location}">
       </head>
       <body>
         ${html || ''}
-        ${js && `<script src="${jsURL}"></script>`}
+        ${js && `<script src="${jsUrl}"></script>`}
       </body>
     </html>
   `
 
-  return getBlobURL(source, 'text/html')
+  const generatedPageUrl = getBlobUrl(source, 'text/html')
+
+  return generatedPageUrl
 }

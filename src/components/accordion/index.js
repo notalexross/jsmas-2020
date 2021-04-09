@@ -4,28 +4,28 @@ import { Container, Item, Head, Icon, Title, Body } from './styles'
 const AccordionContext = createContext()
 const ItemContext = createContext()
 
-export default function Accordion({ autoCollapse = false, children, ...restProps }) {
-  const [activeItem, setActiveItem] = useState()
+export default function Accordion({ children, shouldAutoCollapse = false, ...restProps }) {
+  const [activeItem, setActiveItem] = useState(null)
 
   return (
-    <AccordionContext.Provider value={{ autoCollapse, activeItem, setActiveItem }}>
+    <AccordionContext.Provider value={{ shouldAutoCollapse, activeItem, setActiveItem }}>
       <Container {...restProps}>{children}</Container>
     </AccordionContext.Provider>
   )
 }
 
 Accordion.Item = function AccordionItem({
-  itemId,
-  respectSetLoaded = false,
   children,
+  itemId,
+  shouldRespectSetLoaded = false,
   ...restProps
 }) {
   const [isOpen, setIsOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(respectSetLoaded)
+  const [isLoading, setIsLoading] = useState(shouldRespectSetLoaded)
 
   return (
     <ItemContext.Provider
-      value={{ isOpen, setIsOpen, isLoading, setIsLoading, respectSetLoaded, itemId }}
+      value={{ isOpen, setIsOpen, isLoading, setIsLoading, shouldRespectSetLoaded, itemId }}
     >
       <Item {...restProps}>{children}</Item>
     </ItemContext.Provider>
@@ -44,15 +44,15 @@ Accordion.Title = function AccordionTitle({ children, ...restProps }) {
 
 Accordion.Head = function AccordionHead({ children, ...restProps }) {
   const { isOpen, setIsOpen, itemId } = useContext(ItemContext)
-  const { autoCollapse, activeItem, setActiveItem } = useContext(AccordionContext)
+  const { shouldAutoCollapse, activeItem, setActiveItem } = useContext(AccordionContext)
 
   const handleClick = () => {
-    if (autoCollapse) {
+    if (shouldAutoCollapse) {
       if (itemId !== undefined) {
-        setActiveItem(!isOpen && itemId !== undefined && itemId)
+        setActiveItem(!isOpen ? itemId : null)
       } else {
         console.error(
-          'Each accordion item requires a (unique) itemId in order to use the autoCollapse attribute'
+          'Each accordion item requires a (unique) itemId in order to use the shouldAutoCollapse attribute'
         )
       }
     } else {
@@ -61,7 +61,7 @@ Accordion.Head = function AccordionHead({ children, ...restProps }) {
   }
 
   useEffect(() => {
-    if (autoCollapse && itemId !== undefined) {
+    if (shouldAutoCollapse) {
       setIsOpen(itemId === activeItem)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,11 +76,15 @@ Accordion.Head = function AccordionHead({ children, ...restProps }) {
 
 Accordion.Body = function AccordionBody({ children, ...restProps }) {
   const { isOpen, isLoading, itemId } = useContext(ItemContext)
-  const { autoCollapse, activeItem } = useContext(AccordionContext)
+  const { shouldAutoCollapse, activeItem } = useContext(AccordionContext)
   const bodyRef = useRef()
 
   useEffect(() => {
-    if (autoCollapse && isOpen && activeItem !== undefined && itemId < activeItem) {
+    const shouldScroll = () => (
+      shouldAutoCollapse && isOpen && Number.isInteger(activeItem) && itemId < activeItem
+    )
+
+    if (shouldScroll()) {
       window.scrollBy(0, -bodyRef.current.offsetHeight)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -94,14 +98,16 @@ Accordion.Body = function AccordionBody({ children, ...restProps }) {
 }
 
 Accordion.SetLoaded = function AccordionSetLoaded() {
-  const { setIsLoading, respectSetLoaded } = useContext(ItemContext)
+  const { setIsLoading, shouldRespectSetLoaded } = useContext(ItemContext)
 
   useEffect(() => {
-    if (respectSetLoaded) {
+    if (shouldRespectSetLoaded) {
       setIsLoading(false)
+
       return () => setIsLoading(true)
     }
-    return undefined
+
+    return null
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

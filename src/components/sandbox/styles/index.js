@@ -10,24 +10,18 @@ export const Container = styled.div`
   }
 `
 
-export const Pre = styled.pre`
-  // margin: 0;
-  // padding: 0;
-  // white-space: pre-wrap;
-`
+export const Pre = styled.pre``
 
 export const Code = styled.code``
 
 export const Editor = styled.div`
-  background-color: #1e1e1e;
-  box-sizing: border-box;
-  height: 410px;
-
   display: flex;
   flex-direction: column;
-
-  border-radius: 0.2rem;
   overflow: hidden;
+  height: 410px;
+  box-sizing: border-box;
+  border-radius: 0.2rem;
+  background-color: #1e1e1e;
   box-shadow: var(--bs);
 `
 
@@ -37,18 +31,18 @@ export const EditorTabsContainer = styled.div`
 `
 
 export const EditorTab = styled.div`
+  overflow: hidden;
+  padding: 0.4em 1em;
+  max-width: 20%;
+  border-left: solid 1px #1e1e1e;
   background-color: ${({ isActive }) => (isActive ? '#1e1e1e' : '#2d2d2d')};
-  cursor: pointer;
   font-size: 0.85em;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 0.4em 1em;
-  max-width: 20%;
-  overflow: hidden;
+  line-height: 1.3;
   white-space: nowrap;
   user-select: none;
-  border-left: solid 1px #1e1e1e;
-  line-height: 1.3;
+  cursor: pointer;
 
   &:first-of-type {
     border-left: none;
@@ -56,9 +50,8 @@ export const EditorTab = styled.div`
 `
 
 export const EditorPagesContainer = styled.div`
-  overflow: auto;
-
   flex-grow: 1;
+  overflow: auto;
 `
 
 export const EditorPage = styled.div`
@@ -68,15 +61,14 @@ export const EditorPage = styled.div`
 export const Doc = styled.iframe`
   width: 100%;
   height: 410px;
-  background-color: #1e1e1e;
-  box-sizing: border-box;
   margin-top: 1.5rem;
   border: none;
+  border-radius: 0.2rem;
+  box-sizing: border-box;
+  background-color: #1e1e1e;
   box-shadow: var(--bs);
 
   @media (min-width: 1550px) {
     margin-top: 0;
   }
-
-  border-radius: 0.2rem;
 `

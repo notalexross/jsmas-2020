@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  // border: solid 1px #444;
   border-bottom: none;
   overflow: hidden;
 `
@@ -9,19 +8,17 @@ export const Container = styled.div`
 export const Item = styled.div``
 
 export const Head = styled.section`
-  padding: 0.5em 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
-  font-size: 1.55em;
-  font-weight: 700;
-  cursor: pointer;
-  user-select: none;
+  padding: 1em;
   background-color: #1e1e1e;
   color: #e5e5e5;
-  padding: 1em;
-  // border-bottom: solid 1px #444;
+  font-size: 1.55em;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
 
   &:hover {
     background-color: #333;
@@ -33,18 +30,18 @@ export const Head = styled.section`
 `
 
 export const Title = styled.h1`
+  margin: 0 1em;
   font-size: 1em;
   font-weight: inherit;
-  margin: 0 1em;
 `
 
 export const Icon = styled.span``
 
 export const Body = styled.div`
-  background-color: #e5e5e5;
-  color: #1e1e1e;
-  font-size: 1.3em;
   box-shadow: inset var(--bs);
   padding: 1.5rem;
   border-bottom: solid 1px #444;
+  background-color: #e5e5e5;
+  color: #1e1e1e;
+  font-size: 1.3em;
 `

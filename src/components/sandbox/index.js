@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext, useContext, useRef } from 'react'
 import Prism from 'prismjs'
 import './styles/prism.css'
-import { getGeneratedPageURL } from '../../utils'
+import { getGeneratedPageUrl } from '../../utils'
 import {
   Container,
   Pre,
@@ -38,7 +38,7 @@ Sandbox.Editor.PagesContainer = function SandboxEditorPagesContainer({ children,
   return <EditorPagesContainer {...restProps}>{children}</EditorPagesContainer>
 }
 
-Sandbox.Editor.Page = function SandboxEditorPage({ id, language, children, ...restProps }) {
+Sandbox.Editor.Page = function SandboxEditorPage({ children, id, language, ...restProps }) {
   const { activePage } = useContext(EditorContext)
 
   useEffect(() => {
@@ -54,7 +54,7 @@ Sandbox.Editor.Page = function SandboxEditorPage({ id, language, children, ...re
   )
 }
 
-Sandbox.Editor.Tab = function SandboxEditorTab({ id, isDefault = false, children, ...restProps }) {
+Sandbox.Editor.Tab = function SandboxEditorTab({ children, id, isDefault = false, ...restProps }) {
   const { activePage, setActivePage } = useContext(EditorContext)
 
   useEffect(() => {
@@ -74,7 +74,7 @@ Sandbox.Editor.Tab = function SandboxEditorTab({ id, isDefault = false, children
 
 Sandbox.Document = function SandboxDocument({ title, content, ...restProps }) {
   const docRef = useRef()
-  const url = getGeneratedPageURL(content)
+  const url = getGeneratedPageUrl(content)
 
   return content.html ? (
     <Doc ref={docRef} src={url} title={title} {...restProps} />

@@ -3,11 +3,10 @@ import SandboxContainer from './SandboxContainer'
 import challenges from '../content/challenges'
 
 export default function AccordionContainer() {
-  // TODO: Move inline syling and regular html tags into Accordion compound component
   return (
-    <Accordion autoCollapse>
+    <Accordion shouldAutoCollapse>
       {challenges.map((challenge, idx) => (
-        <Accordion.Item key={challenge.day} itemId={challenge.day} respectSetLoaded={false}>
+        <Accordion.Item key={challenge.day} itemId={challenge.day}>
           <Accordion.Head>
             <Accordion.OpenCloseIcon />
             <Accordion.Title>{`Day ${challenge.day}: ${challenge.title}`}</Accordion.Title>
@@ -19,11 +18,11 @@ export default function AccordionContainer() {
                 <p>
                   Instructor:
                   {' '}
-                  <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer">
+                  <a href={challenge.authorUrl} target="_blank" rel="noopener noreferrer">
                     {challenge.author}
                   </a>
                 </p>
-                <a href={challenge.authorURL} target="_blank" rel="noopener noreferrer">
+                <a href={challenge.authorUrl} target="_blank" rel="noopener noreferrer">
                   <img src={challenge.authorImage} alt="avatar" />
                 </a>
               </div>
@@ -31,7 +30,7 @@ export default function AccordionContainer() {
                 <h2 className="description-heading">Description</h2>
                 <p>{challenge.description}</p>
                 <p>
-                  <a href={challenge.scrimURL} target="_blank" rel="noopener noreferrer">
+                  <a href={challenge.scrimUrl} target="_blank" rel="noopener noreferrer">
                     View editable solution on Scrimba
                   </a>
                 </p>
@@ -39,9 +38,9 @@ export default function AccordionContainer() {
             </div>
             <h2 className="solution-heading">Solution</h2>
             <SandboxContainer
-              SetLoaded={Accordion.SetLoaded}
               src={`content/solutions/day${idx + 1}`}
               title={`Day ${idx + 1} working example`}
+              SetLoadedComponent={Accordion.SetLoaded}
             />
           </Accordion.Body>
         </Accordion.Item>
