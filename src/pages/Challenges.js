@@ -20,7 +20,7 @@ export default function Challenges() {
           </a>
           . You can find out more about me
           {' '}
-          <a href="https://notalexross.com" target="_blank" rel="noopener noreferrer">
+          <a href={process.env.REACT_APP_SOCIAL_PORTFOLIO} target="_blank" rel="noopener noreferrer">
             here
           </a>
           .
